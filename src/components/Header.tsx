@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingBag, User, Heart, Search, Menu, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
@@ -10,6 +10,7 @@ const Header: React.FC = () => {
   const { toggleCart, getTotalItems } = useCart();
   const { getTotalItems: getWishlistItems } = useWishlist();
   const location = useLocation();
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -99,7 +100,10 @@ const Header: React.FC = () => {
           {/* Right Side - Actions & Company Name */}
           <div className="flex items-center space-x-4">
             {/* Wishlist */}
-            <button className="p-2 text-gray-700 hover:text-sky-600 transition-colors relative">
+            <button 
+              onClick={() => navigate('/wishlist')}
+              className="p-2 text-gray-700 hover:text-sky-600 transition-colors relative"
+            >
               <Heart className="w-5 h-5" />
               {getWishlistItems() > 0 && (
                 <span className="absolute -top-1 -right-1 bg-rose-300 text-slate-700 text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
