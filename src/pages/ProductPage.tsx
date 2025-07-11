@@ -42,6 +42,9 @@ const ProductPage: React.FC = () => {
   // Suggested products (excluding current product)
   const suggestedProducts = products.filter(p => p.id !== product.id && p.category === product.category).slice(0, 4);
   
+  // Suggested products (excluding current product)
+  const suggestedProducts = products.filter(p => p.id !== product.id && p.category === product.category).slice(0, 4);
+  
   const inWishlist = isInWishlist(product.id);
 
   const handleAddToCart = () => {
@@ -429,6 +432,17 @@ const ProductPage: React.FC = () => {
           )}
         </div>
 
+        {/* Suggested Products */}
+        {suggestedProducts.length > 0 && (
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">You Might Also Like</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {suggestedProducts.map((suggestedProduct) => (
+                <ProductCard key={suggestedProduct.id} product={suggestedProduct} />
+              ))}
+            </div>
+          </div>
+        )}
         {/* Suggested Products */}
         {suggestedProducts.length > 0 && (
           <div>
