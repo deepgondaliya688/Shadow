@@ -42,9 +42,6 @@ const ProductPage: React.FC = () => {
   // Suggested products (excluding current product)
   const suggestedProducts = products.filter(p => p.id !== product.id && p.category === product.category).slice(0, 4);
   
-  // Suggested products (excluding current product)
-  const suggestedProducts = products.filter(p => p.id !== product.id && p.category === product.category).slice(0, 4);
-  
   const inWishlist = isInWishlist(product.id);
 
   const handleAddToCart = () => {
